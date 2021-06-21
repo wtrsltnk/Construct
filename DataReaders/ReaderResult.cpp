@@ -1,43 +1,43 @@
 #include "ReaderResult.h"
-#include <windows.h>
 #include <stdio.h>
 #include <string.h>
+#include <windows.h>
 
 ReaderResult::ReaderResult() : bResult(true)
 {
-	strcpy(this->szErrMsg, "");
+    strcpy(this->szErrMsg, "");
 }
 
-ReaderResult::ReaderResult(bool result, const char* errmsg, ...) : bResult(true)
+ReaderResult::ReaderResult(bool result, const char *errmsg, ...) : bResult(true)
 {
-	va_list ap;
+    va_list ap;
 
-	::va_start(ap, errmsg);
-	    ::vsprintf(this->szErrMsg, errmsg, ap);
-	::va_end(ap);
+    va_start(ap, errmsg);
+    vsprintf(this->szErrMsg, errmsg, ap);
+    va_end(ap);
 }
 
 ReaderResult::~ReaderResult()
 {
 }
 
-ReaderResult::operator bool (void)
+ReaderResult::operator bool(void)
 {
-	return this->bResult;
+    return this->bResult;
 }
 
-ReaderResult::operator const char* (void)
+ReaderResult::operator const char *(void)
 {
-	return this->szErrMsg;
+    return this->szErrMsg;
 }
 
-void ReaderResult::operator = (ReaderResult r)
+void ReaderResult::operator=(ReaderResult r)
 {
-	this->bResult = r.bResult;
-	strcpy(this->szErrMsg, r.szErrMsg);
+    this->bResult = r.bResult;
+    strcpy(this->szErrMsg, r.szErrMsg);
 }
 
-const char* ReaderResult::ErrMsg()
+const char *ReaderResult::ErrMsg()
 {
-	return this->szErrMsg;
+    return this->szErrMsg;
 }

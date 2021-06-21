@@ -44,7 +44,7 @@ bool Win32Font::Initialize(HDC hDC, char* family, int size)
 
 void Win32Font::Destroy()
 {
-	::glDeleteLists(this->font_index, 96);
+    glDeleteLists(this->font_index, 96);
 }
 
 void Win32Font::PrintText(int x, int y, char* str, ...)
@@ -55,13 +55,13 @@ void Win32Font::PrintText(int x, int y, char* str, ...)
 	if (str == NULL)
 		return;
 
-	::va_start(ap, str);
-	    ::vsprintf(text, str, ap);
-	::va_end(ap);
+    va_start(ap, str);
+        vsprintf(text, str, ap);
+    va_end(ap);
 
-	::glRasterPos2i(x, y);
-	::glPushAttrib(GL_LIST_BIT);
-	::glListBase(this->font_index - 32);
-	::glCallLists(::strlen(text), GL_BYTE, text);
-	::glPopAttrib();
+    glRasterPos2i(x, y);
+    glPushAttrib(GL_LIST_BIT);
+    glListBase(this->font_index - 32);
+    glCallLists(::strlen(text), GL_BYTE, text);
+    glPopAttrib();
 }

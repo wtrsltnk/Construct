@@ -96,7 +96,7 @@ LRESULT Control::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			window->hWnd = hWnd;
 	
-			::SetWindowLong(hWnd, GWL_USERDATA, reinterpret_cast <long> (window));
+            ::SetWindowLong(hWnd, GWLP_USERDATA, reinterpret_cast <long long> (window));
 	
 			return window->ObjectProc(hWnd, msg, wParam, lParam);
 		}
@@ -107,7 +107,7 @@ LRESULT Control::WinProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	else
 	{
-		window = reinterpret_cast <Control*>(::GetWindowLong(hWnd, GWL_USERDATA));
+        window = reinterpret_cast <Control*>(::GetWindowLong(hWnd, GWLP_USERDATA));
 	
 		if (window != NULL)
 		{

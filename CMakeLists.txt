@@ -1,0 +1,156 @@
+cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
+
+project(Construct)
+
+find_package(OpenGL REQUIRED)
+
+include(cmake/CPM.cmake)
+include(cmake/Dependencies.cmake)
+
+add_executable(Construct)
+
+target_sources(Construct
+    PUBLIC
+        cmake/CPM.cmake
+        cmake/Dependencies.cmake
+        Common/CMakeLists.txt
+        Common/cmdlib.cpp
+        Common/cmdlib.h
+        Common/GameArguments.cpp
+        Common/GameArguments.h
+        Common/GameRoot.cpp
+        Common/GameRoot.h
+        Common/mathlib.cpp
+        Common/mathlib.h
+        Common/Tokenizer.cpp
+        Common/Tokenizer.h
+        Common/Utility.cpp
+        Common/Utility.h
+        Data/Data.cpp
+        Data/Data.h
+        Data/DataBlock.cpp
+        Data/DataBlock.h
+        Data/DataFile.cpp
+        Data/DataFile.h
+        Data/Package.cpp
+        Data/Package.h
+        Data/PackageList.cpp
+        Data/PackageList.h
+        Data/TextureList.cpp
+        Data/TextureList.h
+        Data/WADList.cpp
+        Data/WADList.h
+        DataReaders/BSPReader.cpp
+        DataReaders/BSPReader.h
+        DataReaders/DataReader.cpp
+        DataReaders/DataReader.h
+        DataReaders/hlbsp.h
+        DataReaders/hlmiptex.h
+        DataReaders/hlwad.h
+        DataReaders/ReaderResult.cpp
+        DataReaders/ReaderResult.h
+        DataReaders/TGAReader.cpp
+        DataReaders/TGAReader.h
+        GL/Camera.cpp
+        GL/Camera.h
+        GL/Console.cpp
+        GL/Console.h
+        GL/Font.cpp
+        GL/Font.h
+        GL/keys.h
+        GL/UserInput.cpp
+        GL/UserInput.h
+        GL/View.cpp
+        GL/View.h
+        GL/Win32Context.cpp
+        GL/Win32Context.h
+        GL/Win32Font.cpp
+        GL/Win32Font.h
+        GL/WorldRenderer.cpp
+        GL/WorldRenderer.h
+        GL/glad.c
+        GUI/Construct.cpp
+        GUI/Construct.h
+        GUI/ConstructKeyMap.cpp
+        GUI/Controls
+        GUI/DisplaySettings.cpp
+        GUI/DisplaySettings.h
+        GUI/main.cpp
+        GUI/TimeTicker.cpp
+        GUI/TimeTicker.h
+        GUI/Controls/Button.cpp
+        GUI/Controls/Button.h
+        GUI/Controls/ComboBox.cpp
+        GUI/Controls/ComboBox.h
+        GUI/Controls/Control.cpp
+        GUI/Controls/Control.h
+        GUI/Controls/GroupBox.cpp
+        GUI/Controls/GroupBox.h
+        GUI/Controls/Label.cpp
+        GUI/Controls/Label.h
+        GUI/Controls/Window.cpp
+        GUI/Controls/Window.h
+        Math/Color.cpp
+        Math/Color.h
+        Math/Frustum.cpp
+        Math/Frustum.h
+        Math/Math.cpp
+        Math/Math.h
+        Math/Matrix.cpp
+        Math/Matrix.h
+        Math/Plane.cpp
+        Math/Plane.h
+        Math/Quaternion.cpp
+        Math/Quaternion.h
+        Math/Vector.cpp
+        Math/Vector.h
+        Textures/bmploader.cpp
+        Textures/bmploader.h
+        Textures/StubTexture.cpp
+        Textures/StubTexture.h
+        Textures/Texture.cpp
+        Textures/Texture.h
+        Textures/TextureList.h
+        Textures/tga.h
+        Textures/WADTexture.cpp
+        Textures/WADTexture.h
+        World/array.h
+        World/bsp.h
+        World/BSPEntities.cpp
+        World/BSPEntities.h
+        World/BSPFile.cpp
+        World/BSPFile.h
+        World/ent.h
+        World/mdl.h
+        World/MDLFile.cpp
+        World/MDLFile.h
+        World/MDLFileList.h
+        World/miptex.h
+        World/spr.h
+        World/SPRFile.cpp
+        World/SPRFile.h
+        World/SPRFileList.h
+        World/Visibility.cpp
+        World/Visibility.h
+        World/wad.h
+        World/WADFile.cpp
+        World/WADFile.h
+        World/WADFileList.h
+        World/World.cpp
+        World/World.h
+)
+
+target_include_directories(Construct
+    PRIVATE include
+)
+
+target_compile_features(Construct
+    PRIVATE cxx_std_17
+)
+
+target_link_libraries(Construct
+    PUBLIC
+        ${OPENGL_LIBRARIES}
+        glm
+)
+
