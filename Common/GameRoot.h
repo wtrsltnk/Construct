@@ -3,6 +3,8 @@
 
 #define DEFAULT_GAMENAME "wtr"
 
+#include <string>
+
 class GameRoot
 {
 private:
@@ -13,8 +15,8 @@ public:
 	static GameRoot* GetInstance();
 	
 protected:
-	char* gameroot;
-	char* gamename;
+    std::string gameroot;
+    std::string gamename;
 	
 	GameRoot(const char* gameroot, const char* gamename);
 	
@@ -23,8 +25,8 @@ public:
 
 	const char* GetGameRoot();
 	const char* GetGameName();
-	char* FindEngineFile(char* filename);
-	char* FindGameFile(char* filename);
+    char* FindEngineFile(const char* filename);
+    char* FindGameFile(const char* filename);
 };
 
 #endif /*GAMEROOT_H_*/

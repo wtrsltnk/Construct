@@ -8,9 +8,9 @@
 
 typedef struct epair_s
 {
-   struct epair_s *next;
-   char  *key;
-   char  *value;
+   struct epair_s *next = nullptr;
+   char  *key = nullptr;
+   char  *value = nullptr;
 } epair_t;
 
 typedef struct
@@ -18,7 +18,7 @@ typedef struct
    vec3_t      origin;
    int         firstbrush;
    int         numbrushes;
-   epair_t     *epairs;
+   epair_t     *epairs = nullptr;
 } entity_t;
 
 #endif /*ENT_H_*/

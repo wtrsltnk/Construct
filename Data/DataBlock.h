@@ -20,7 +20,7 @@ public:
 	int Size();
 	
 public:
-	static DataBlock* Read(FILE* file, int size = -1, int offset = -1);
+    static DataBlock* Read(FILE* file, int size = -1, int offset = -1);
 	static DataBlock* Create(char* data, int size);
 };
 

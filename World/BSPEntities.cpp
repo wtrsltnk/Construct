@@ -17,32 +17,34 @@ bool BSPEntities::ParseEntity(Tokenizer* tok)
 {
 	char *token = (char*)malloc(sizeof(char) * MAX_TOKEN_SIZE);
 	
-	if ((tok->GetToken(&token) == TOKEN_READY)
-			&& (strcmp(token, "{") == 0)
-			&& (this->numentities < MAX_ENTITIES))
-	{
-		entity_t* ent = &this->entities[this->numentities++];
-		
-		do
-		{
-			if (strcmp(token, "}") == 0)
-				break;
-			
-			epair_t* e = this->ParseEpair(tok);
-			
-			if (e != 0)
-			{
-				e->next = ent->epairs;
-				ent->epairs = e;
-			}
-		}
-		while (tok->GetToken((char**)&token) == TOKEN_READY);
+    if ((tok->GetToken(&token) != TOKEN_READY)
+        || (strcmp(token, "{") != 0)
+        || (this->numentities >= MAX_ENTITIES))
+    {
+        free(token);
+        return false;
+    }
 
-		free(token);
-		return true;
-	}
-	free(token);
-	return false;
+    entity_t* ent = &this->entities[this->numentities++];
+
+    do
+    {
+        if (strcmp(token, "}") == 0)
+            break;
+
+        epair_t* e = this->ParseEpair(tok);
+
+        if (e != 0)
+        {
+            e->next = ent->epairs;
+            ent->epairs = e;
+        }
+    }
+    while (tok->GetToken((char**)&token) == TOKEN_READY);
+
+    free(token);
+
+    return true;
 }
 
 epair_t* BSPEntities::ParseEpair(Tokenizer* tok)

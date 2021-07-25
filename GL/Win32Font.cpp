@@ -11,7 +11,7 @@ Win32Font::~Win32Font()
 {
 }
 
-bool Win32Font::Initialize(HDC hDC, char* family, int size)
+bool Win32Font::Initialize(HDC hDC, const char* family, int size)
 {
 	HFONT font;
 	HFONT oldfont;
@@ -47,7 +47,7 @@ void Win32Font::Destroy()
     glDeleteLists(this->font_index, 96);
 }
 
-void Win32Font::PrintText(int x, int y, char* str, ...)
+void Win32Font::PrintText(int x, int y, const char* str, ...)
 {
 	char text[256];
 	va_list ap;

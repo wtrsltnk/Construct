@@ -7,7 +7,7 @@
 /*
  * Initialization routines
  */
-bool World::LoadWorld(char* worldname)
+bool World::LoadWorld(const char* worldname)
 {
 	printf("[Load World]\n");
 
@@ -82,7 +82,7 @@ bool World::InitializeWorldSpawn(entity_t* worldspawn)
 	return false;
 }
 
-void World::AddWad(char* wad)
+void World::AddWad(const char* wad)
 {
 	char* fullwadpath = GameRoot::GetInstance()->FindGameFile(wad);
 	
@@ -130,7 +130,7 @@ bool World::InitializeTextures()
 	return true;
 }
 
-Texture* World::FindTexture(char* name)
+Texture* World::FindTexture(const char* name)
 {
 	for (int i = 0; i < this->numwadfiles; i++)
 	{
@@ -154,15 +154,16 @@ Texture* World::GetStubTexture()
 
 bool World::InitializeFaces()
 {
-	this->numfaces = this->pBspFile.numfaces;
+    this->numfaces = 0;
 	this->firstface = 0;
-	printf("numfaces: %d\n", this->numfaces);
-	/*
-	for (int i = 0; i < this->numfaces; i++)
+    printf("numfaces: %d\n", this->pBspFile.numfaces);
+
+    for (int i = 0; i < this->pBspFile.numfaces; i++)
 	{
 		tFace* face = (tFace*)malloc(sizeof(tFace));
 		face->next = this->firstface;
-		this->numfaces++;
+        this->firstface = face;
+        this->numfaces++;
 		
 		memcpy(&face->plane, &this->pBspFile.dplanes[this->pBspFile.dfaces[i].planenum], sizeof(dplane_t));
 		face->side = this->pBspFile.dfaces[i].side;
@@ -203,7 +204,7 @@ bool World::InitializeFaces()
         	this->vertlist.add(v);
         }
 	}
-	*/
+
 	return true;
 }
 

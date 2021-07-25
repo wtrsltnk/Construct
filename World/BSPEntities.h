@@ -8,7 +8,7 @@
 class BSPEntities
 {
 protected:
-	int numentities;
+    int numentities = 0;
 	entity_t entities[MAX_ENTITIES];
 	
 	bool ParseEntity(Tokenizer* tok);

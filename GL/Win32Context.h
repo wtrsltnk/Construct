@@ -23,7 +23,7 @@ public:
     void CloseFrame();
     void DestroyGL();
 
-    Font *CreateFont(char *family, int size);
+    Font *CreateFont(const char *family, int size);
     void SetBGColor(float color[4]);
 
     void DrawOrigin();

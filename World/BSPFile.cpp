@@ -35,7 +35,7 @@ int GlobUsage( char *szItem, int itemstorage, int maxstorage )
    return itemstorage;
 }
 
-bool BSPFile::LoadBSP(char *bspname)
+bool BSPFile::LoadBSP(const char *bspname)
 {
 	   int   i;
 
@@ -75,7 +75,7 @@ bool BSPFile::LoadBSP(char *bspname)
 	   return true;
 }
 
-void BSPFile::WriteBSPFile (char *bspname)
+void BSPFile::WriteBSPFile (const char *bspname)
 {
    dheader_t *header = &outheader;
    

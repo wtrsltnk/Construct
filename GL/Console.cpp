@@ -48,7 +48,7 @@ Console::~Console()
 
 void Console::Render(int width, int height)
 {
-	if (this->focus)
+    if (this->focus)
 	{
 		if (height == 0) height = 1;
 		

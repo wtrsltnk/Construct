@@ -1,6 +1,6 @@
 #include "WADFile.h"
 
-bool WADFile::OpenWAD(char *wadname)
+bool WADFile::OpenWAD(const char *wadname)
 {
 	int size;
 
@@ -22,7 +22,7 @@ bool WADFile::OpenWAD(char *wadname)
 	return true;
 }
 
-bool WADFile::HasTexture(char* name)
+bool WADFile::HasTexture(const char* name)
 {
 	for (int i = 0; i < this->numlumps; i++)
 	{
@@ -34,7 +34,7 @@ bool WADFile::HasTexture(char* name)
 	return false;
 }
 
-bool WADFile::ReadTexture(char* name, void* buffer)
+bool WADFile::ReadTexture(const char* name, void* buffer)
 {
 	for (int i = 0; i < this->numlumps; i++)
 	{
@@ -105,6 +105,7 @@ WADFile::WADFile()
 	this->wadhandle = 0;
 	this->numlumps = 0;
 	this->lumpinfo = 0;
+    this->wadinfo = {};
 }
 
 WADFile::~WADFile()

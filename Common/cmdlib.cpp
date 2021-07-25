@@ -245,7 +245,7 @@ char *ExpandPathAndArchive (char *path)
 }
 
 
-char *copystring(char *s)
+char *copystring(const char *s)
 {
         char    *b;
         b = (char *)malloc(strlen(s)+1);
@@ -296,7 +296,7 @@ void Q_getwd (char *out)
 }
 
 
-void Q_mkdir (char *path)
+void Q_mkdir (const char *path)
 {
 #ifndef __linux__
         if (_mkdir (path) != -1)
@@ -316,7 +316,7 @@ FileTime
 returns -1 if not present
 ============
 */
-int     FileTime (char *path)
+int     FileTime (const char *path)
 {
         struct  stat    buf;
         
@@ -519,7 +519,7 @@ int filelength (FILE *f)
 }
 
 
-FILE *SafeOpenWrite (char *filename)
+FILE *SafeOpenWrite (const char *filename)
 {
         FILE    *f;
 
@@ -531,7 +531,7 @@ FILE *SafeOpenWrite (char *filename)
         return f;
 }
 
-FILE *SafeOpenRead (char *filename)
+FILE *SafeOpenRead (const char *filename)
 {
         FILE    *f;
 
@@ -563,7 +563,7 @@ void SafeWrite (FILE *f, void *buffer, int count)
 LoadFile
 ==============
 */
-int    LoadFile (char *filename, void **bufferptr)
+int    LoadFile (const char *filename, void **bufferptr)
 {
         FILE    *f;
         int    length;

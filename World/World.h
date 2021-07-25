@@ -33,18 +33,18 @@ typedef struct tFace
 class World
 {
 protected:
-	bool isloaded;
+    bool isloaded = false;
 	BSPFile pBspFile;
 	BSPEntities pBspEntities;
 	
-	int numwadfiles;
+    int numwadfiles = 0;
 	LPWADFile vWadFiles[MAX_WADS];
 	
-	int numtextures;
+    int numtextures = 0;
 	LPTexture vTextures[MAX_TEXTURES];
 	
-	int numfaces;
-	tFace* firstface;
+    int numfaces = 0;
+    tFace* firstface = nullptr;
 	
 	array_t<3> vertlist;
 
@@ -52,10 +52,10 @@ protected:
 	void UnLoadDependencies();
 	
 	bool InitializeWorldSpawn(entity_t* worldspawn);
-	void AddWad(char* wad);
+    void AddWad(const char* wad);
 	
 	bool InitializeTextures();
-	Texture* FindTexture(char* name);
+    Texture* FindTexture(const char* name);
 	Texture* GetStubTexture();
 	
 	bool InitializeFaces();
@@ -64,7 +64,7 @@ public:
 	World();
 	virtual ~World();
 	
-	bool LoadWorld(char* worldname);
+    bool LoadWorld(const char* worldname);
 	void Cleanup();
 
 	Visibility* GetVisibilityTable();

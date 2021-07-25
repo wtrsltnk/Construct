@@ -20,7 +20,7 @@ protected:
 	eKeyState key_state[MAX_KEYS];
 	tKeyMap* key_map;
 	
-	Hook* pFirstHook;
+    Hook* pFirstHook = nullptr;
 	
 public:
 	UserInput(tKeyMap* key_map);

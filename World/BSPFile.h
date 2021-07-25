@@ -64,8 +64,8 @@ public:
 	BSPFile();
 	virtual ~BSPFile();
 
-	bool LoadBSP(char *bspname);
-	void WriteBSPFile(char *bspname);
+    bool LoadBSP(const char *bspname);
+    void WriteBSPFile(const char *bspname);
 	void PrintBSPFileSizes(void);
 	void Cleanup();
 };

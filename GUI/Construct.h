@@ -12,6 +12,8 @@
 #include "../World/World.h"
 #include "../Common/GameArguments.h"
 
+#include <memory>
+
 typedef struct tVidProps
 {
 	int resx, resy;
@@ -27,9 +29,9 @@ protected:
 	TimeTicker ticker;
 	View view;
 	Camera cam;
-	Font* font;
-	UserInput* userinput;
-	Console* console;
+    Font* font = nullptr;
+    std::unique_ptr<UserInput> userinput = nullptr;
+    Console* console = nullptr;
 	World world;
 	WorldRenderer renderer;
 
@@ -38,7 +40,7 @@ protected:
 	virtual void OnIdle();
 	virtual void OnDestroy();
 	
-	virtual LRESULT ObjectProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+    virtual LRESULT ObjectProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	
 	static tKeyMap* GetWindowsKeyMap();
 public:

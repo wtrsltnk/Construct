@@ -10,7 +10,7 @@ protected:
 	FILE *wadhandle;
 	wadinfo_t wadinfo;
 	int numlumps;
-	lumpinfo_t* lumpinfo;
+    lumpinfo_t* lumpinfo = nullptr;
 	
 	bool ReadWadHeader(FILE *wadhandle, wadinfo_t *wadinfo);
 	bool ReadWadLumps(FILE *wadhandle, long offset, int num_lumps, lumpinfo_t *lumpinfo);
@@ -20,10 +20,10 @@ public:
 	WADFile();
 	virtual ~WADFile();
 
-	bool OpenWAD(char *wadname);
+    bool OpenWAD(const char *wadname);
 	
-	bool HasTexture(char* name);
-	bool ReadTexture(char* name, void* buffer);
+    bool HasTexture(const char* name);
+    bool ReadTexture(const char* name, void* buffer);
 	
 	int GetNumTextures();
 	lumpinfo_t* GetTexture(int index);

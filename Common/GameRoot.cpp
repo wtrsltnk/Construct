@@ -22,37 +22,38 @@ GameRoot* GameRoot::GetInstance()
 
 const char* GameRoot::GetGameRoot()
 {
-	return this->gameroot;
+    return this->gameroot.c_str();
 }
 
 const char* GameRoot::GetGameName()
 {
-	return this->gamename;
+    return this->gamename.c_str();
 }
 
-char* GameRoot::FindEngineFile(char* filename)
+char* GameRoot::FindEngineFile(const char* filename)
 {
 	static char result[256] = { 0 };
-	
-	sprintf(result, "%s\\%s", this->gameroot, filename);
+
+    sprintf_s(result, 256, "%s\\%s", this->gameroot.c_str(), filename);
 	if (Utility::File::Exists(result))
 	{
 		return result;
 	}
-	return 0;
+
+    return 0;
 }
 
-char* GameRoot::FindGameFile(char* filename)
+char* GameRoot::FindGameFile(const char* filename)
 {
 	static char result[256] = { 0 };
 	
-	sprintf(result, "%s\\%s\\%s", this->gameroot, this->gamename, filename);
+    sprintf_s(result, 256, "%s\\%s\\%s", this->gameroot.c_str(), this->gamename.c_str(), filename);
 	if (Utility::File::Exists(result))
 	{
 		return result;
 	}
 	
-	sprintf(result, "%s\\%s\\%s", this->gameroot, DEFAULT_GAMENAME, filename);
+    sprintf_s(result, 256, "%s\\%s\\%s", this->gameroot.c_str(), DEFAULT_GAMENAME, filename);
 	if (Utility::File::Exists(result))
 	{
 		return result;
@@ -62,17 +63,11 @@ char* GameRoot::FindGameFile(char* filename)
 
 GameRoot::GameRoot(const char* gameroot, const char* gamename)
 {
-	if (gamename == 0) gamename = DEFAULT_GAMENAME;
-	
-	this->gameroot = new char[strlen(gameroot)+1];
-	strcpy(this->gameroot, gameroot);
-	
-	this->gamename = new char[strlen(gamename)+1];
-	strcpy(this->gamename, gamename);
+    if (gamename == 0) gamename = DEFAULT_GAMENAME;
+
+    this->gameroot = gameroot;
+
+    this->gamename = gamename;
 }
 
-GameRoot::~GameRoot()
-{
-	delete [] this->gameroot;
-	delete [] this->gamename;
-}
+GameRoot::~GameRoot() = default;

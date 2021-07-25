@@ -10,7 +10,7 @@ class Font
 		Font();
 		virtual ~Font();
 		
-		virtual void PrintText(int x, int y, char* str, ...) = 0;
+        virtual void PrintText(int x, int y, const char* str, ...) = 0;
 		int GetLineHeight();
 		virtual void Destroy() = 0;
 };
